@@ -1,0 +1,64 @@
+.board-page {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.board-header {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-bottom: 1px solid #dbe1ea;
+    background: #fff;
+}
+
+.board-header h1 {
+    margin: 0;
+    color: #202638;
+    font-size: 20px;
+}
+
+.board-header p {
+    margin: 4px 0 0;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.board-login-link {
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: #2563eb;
+    color: #fff;
+    text-decoration: none;
+}
+
+.board-login-link:hover {
+    background: #1d4ed8;
+}
+
+.board-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.board-profile-link {
+    padding: 8px 12px;
+    border: 1px solid #dbe1ea;
+    border-radius: 6px;
+    color: #202638;
+    text-decoration: none;
+}
+
+.board-profile-link:hover {
+    background: #f3f6fb;
+}
+
+button.board-login-link {
+    border: 0;
+    font: inherit;
+    cursor: pointer;
+}

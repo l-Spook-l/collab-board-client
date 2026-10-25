@@ -1,0 +1,18 @@
+/* Базовые стили для всего приложения */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.auth-loading {
+  padding: 40px;
+  text-align: center;
+}
