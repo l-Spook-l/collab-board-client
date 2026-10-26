@@ -1,0 +1,97 @@
+.board-editor-page {
+  display: flex;
+  height: 100vh;
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.board-collaboration-bar {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #dbe1ea;
+  background: #fff;
+}
+
+.board-online-users,
+.board-invite-form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: #4b5563;
+  font-size: 13px;
+}
+
+.board-user-chip {
+  padding: 5px 9px;
+  border: 1px solid #dbe1ea;
+  border-radius: 999px;
+  background: #f8fafc;
+}
+
+.board-invite-form label {
+  font-weight: 600;
+}
+
+.board-invite-form input {
+  min-width: 210px;
+  padding: 8px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.board-invite-form button,
+.board-action-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: #2563eb;
+  color: #fff;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.board-invite-form button:disabled,
+.board-login-link:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.board-invite-found,
+.board-invite-message {
+  color: #475569;
+}
+
+.board-editor-message,
+.board-editor-success,
+.board-unsaved-message {
+  margin: 0;
+  padding: 8px 20px;
+  color: #475569;
+  background: #f8fafc;
+}
+
+.board-editor-success {
+  color: #166534;
+}
+
+.board-unsaved-message {
+  color: #92400e;
+  background: #fffbeb;
+}
+
+@media (max-width: 760px) {
+  .board-collaboration-bar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

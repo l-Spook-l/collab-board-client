@@ -1,57 +1,61 @@
-import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useAuthSession } from "../../auth/model/AuthSession";
-import Whiteboard from "../editor/canvas/Whiteboard";
+import BoardHeader from "../components/BoardHeader";
+import Whiteboard, { type WhiteboardHandle } from "../editor/canvas/Whiteboard";
+import { createBoard } from "../api/boards";
 import "./BoardPage.css";
 
 function BoardPage() {
-    const { accessToken, setAccessToken } = useAuthSession();
-    const { isAuthenticated, logout } = useAuth0();
+    const { accessToken } = useAuthSession();
+    const navigate = useNavigate();
+    const whiteboardRef = useRef<WhiteboardHandle>(null);
+    const [isSaving, setIsSaving] = useState(false);
+    const [error, setError] = useState("");
 
-    const handleLogout = () => {
-        // Удаляем backend-токен; кнопка сразу снова станет «Войти».
-        setAccessToken(null);
+    const saveCurrentDrawing = async () => {
+        if (!accessToken || !whiteboardRef.current || isSaving) return;
+        const title = window.prompt("Board title", "New board")?.trim();
+        if (!title) return;
 
-        // Если вход был через Auth0, завершаем и его сессию.
-        if (isAuthenticated) {
-            void logout({
-                logoutParams: {
-                    returnTo: window.location.origin,
-                },
-            });
+        setError("");
+        setIsSaving(true);
+        try {
+            const board = await createBoard(
+                accessToken,
+                title,
+                whiteboardRef.current.getDocument(),
+            );
+            navigate(`/boards/${board.id}`);
+        } catch {
+            setError("Could not create the board. Check your connection and sign in again.");
+        } finally {
+            setIsSaving(false);
         }
     };
 
     return (
         <main className="board-page">
-            <header className="board-header">
-                <div>
-                    <h1>CollabBoard</h1>
-                    <p>Свободный холст</p>
-                </div>
-
-                {accessToken ? (
-                    <div className="board-header-actions">
-                        <Link className="board-profile-link" to="/profile">
-                            Профиль
-                        </Link>
+            <BoardHeader title="CollabBoard" subtitle="Free canvas">
+                {accessToken && (
+                    <>
+                        <Link className="board-profile-link" to="/boards">My boards</Link>
                         <button
                             className="board-login-link"
                             type="button"
-                            onClick={handleLogout}
+                            disabled={isSaving}
+                            onClick={() => void saveCurrentDrawing()}
                         >
-                            Выйти
+                            {isSaving ? "Saving..." : "Save"}
                         </button>
-                    </div>
-                ) : (
-                    <Link className="board-login-link" to="/login">
-                        Войти
-                    </Link>
+                    </>
                 )}
-            </header>
+            </BoardHeader>
 
-            <Whiteboard />
+            {error && <p className="board-page-error" role="alert">{error}</p>}
+
+            <Whiteboard ref={whiteboardRef} />
         </main>
     );
 }

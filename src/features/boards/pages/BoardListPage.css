@@ -1,0 +1,78 @@
+.board-list-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+}
+
+.board-list-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 20px;
+}
+
+.board-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.board-card {
+  display: flex;
+  min-height: 140px;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid #dbe1ea;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgb(31 41 55 / 4%);
+}
+
+.board-card:hover {
+  border-color: #93b4f5;
+  box-shadow: 0 8px 20px rgb(31 41 55 / 8%);
+}
+
+.board-card-link {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  color: #202638;
+  text-decoration: none;
+}
+
+.board-card-link span,
+.board-card-link small {
+  color: #6b7280;
+}
+
+.board-delete-button {
+  align-self: flex-start;
+  padding: 6px 10px;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  background: #fff;
+  color: #b91c1c;
+  font: inherit;
+  cursor: pointer;
+}
+
+.board-delete-button:hover:not(:disabled) {
+  background: #fef2f2;
+}
+
+.board-delete-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.board-list-empty {
+  max-width: 520px;
+  margin: 12vh auto;
+  text-align: center;
+}
+
+.board-list-empty p {
+  color: #6b7280;
+  margin-bottom: 20px;
+}

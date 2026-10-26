@@ -45,6 +45,35 @@
     gap: 8px;
 }
 
+.board-header-actions > a,
+.board-header-actions > button {
+    white-space: nowrap;
+}
+
+.board-action-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 6px;
+    background: #2563eb;
+    color: #fff;
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.board-action-link:hover {
+    background: #1d4ed8;
+}
+
+.board-page-error {
+    margin: 0;
+    padding: 10px 20px;
+    color: #991b1b;
+    background: #fef2f2;
+}
+
 .board-profile-link {
     padding: 8px 12px;
     border: 1px solid #dbe1ea;

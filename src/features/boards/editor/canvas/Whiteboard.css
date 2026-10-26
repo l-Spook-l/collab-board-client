@@ -75,6 +75,15 @@
     box-shadow: 0 8px 24px rgb(31 41 55 / 10%);
     cursor: crosshair;
 
-    /* Отключаем жест прокрутки на холсте, чтобы работало рисование пальцем. */
+    /* Disable touch scrolling on the canvas so drawing works with a finger. */
     touch-action: none;
+}
+
+.whiteboard-canvas-disabled {
+    cursor: wait;
+}
+
+.whiteboard-clear-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
 }
