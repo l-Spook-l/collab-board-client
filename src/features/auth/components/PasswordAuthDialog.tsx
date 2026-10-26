@@ -28,7 +28,7 @@ function getErrorMessage(error: unknown): string {
             return detail;
         }
 
-        // FastAPI может вернуть список ошибок валидации вместо одной строки.
+        // FastAPI may return a list of validation errors instead of a single string.
         if (Array.isArray(detail)) {
             const messages = detail
                 .map((item) => {
@@ -68,7 +68,7 @@ function PasswordAuthDialog({
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     const closeFromBackdrop = (event: MouseEvent<HTMLDivElement>) => {
-        // Закрываем окно кликом по затемнённому фону, но не во время запроса.
+        // Close the dialog when the dimmed backdrop is clicked, but not while a request is active.
         if (event.target === event.currentTarget && !isSubmitting) {
             onClose();
         }
@@ -90,7 +90,7 @@ function PasswordAuthDialog({
                 await registerWithPassword(registrationData);
             }
 
-            // После регистрации и при обычном входе получаем JWT одним способом.
+            // After registration and password sign-in, obtain the JWT the same way.
             const result = await loginWithPassword({ email, password });
             onAuthenticated(result.access_token);
         } catch (error: unknown) {
@@ -131,10 +131,10 @@ function PasswordAuthDialog({
                     </div>
 
                     <p className="password-dialog-tagline">
-                        Работайте вместе<br />на одном холсте
+                        Work together<br />on one canvas
                     </p>
 
-                    {/* Декоративная схема холста для боковой панели. */}
+                    {/* Decorative canvas sketch for the sidebar. */}
                     <div className="password-dialog-brand-art" aria-hidden="true">
                         <div className="password-dialog-art-connector" />
                         <div className="password-dialog-art-card password-dialog-art-card-main">
@@ -155,7 +155,7 @@ function PasswordAuthDialog({
                     <button
                         className="password-dialog-close"
                         type="button"
-                        aria-label="Закрыть окно"
+                        aria-label="Close dialog"
                         disabled={isSubmitting}
                         onClick={onClose}
                     >
@@ -163,13 +163,13 @@ function PasswordAuthDialog({
                     </button>
 
                     <h2 id="password-dialog-title">
-                        {isRegistering ? "Создать аккаунт" : "Войти в CollabBoard"}
+                        {isRegistering ? "Create account" : "Sign in to CollabBoard"}
                     </h2>
 
                     <form onSubmit={handleSubmit}>
                         {isRegistering && (
                             <label className="password-dialog-field">
-                                Имя
+                                Name
                                 <input
                                     type="text"
                                     autoComplete="name"
@@ -194,7 +194,7 @@ function PasswordAuthDialog({
                         </label>
 
                         <div className="password-dialog-field">
-                            <label htmlFor="password-input">Пароль</label>
+                            <label htmlFor="password-input">Password</label>
 
                             <div className="password-dialog-password-row">
                                 <input
@@ -210,9 +210,9 @@ function PasswordAuthDialog({
                                 <button
                                     className="password-dialog-visibility"
                                     type="button"
-                                    aria-label={isPasswordVisible ? "Скрыть пароль" : "Показать пароль"}
+                                    aria-label={isPasswordVisible ? "Hide password" : "Show password"}
                                     aria-pressed={isPasswordVisible}
-                                    title={isPasswordVisible ? "Скрыть пароль" : "Показать пароль"}
+                                    title={isPasswordVisible ? "Hide password" : "Show password"}
                                     onClick={() => setIsPasswordVisible((visible) => !visible)}
                                 >
                                     <svg
@@ -256,15 +256,15 @@ function PasswordAuthDialog({
                             disabled={isSubmitting}
                         >
                             {isSubmitting
-                                ? "Подождите..."
+                                ? "Please wait..."
                                 : isRegistering
-                                    ? "Создать аккаунт"
-                                    : "Войти"}
+                                    ? "Create account"
+                                    : "Sign in"}
                         </button>
                     </form>
 
                     <div className="password-dialog-divider">
-                        <span>или</span>
+                        <span>or</span>
                     </div>
 
                     {googleError && (
@@ -290,8 +290,8 @@ function PasswordAuthDialog({
                         onClick={switchMode}
                     >
                         {isRegistering
-                            ? "Уже есть аккаунт? Войти"
-                            : "Нет аккаунта? Зарегистрироваться"}
+                            ? "Already have an account? Sign in"
+                            : "Don't have an account? Sign up"}
                     </button>
                 </div>
             </section>

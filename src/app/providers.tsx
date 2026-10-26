@@ -12,11 +12,11 @@ export function AppProviders({ children }: PropsWithChildren) {
       domain={domain}
       clientId={clientId}
       onRedirectCallback={(appState) => {
-        // Возвращаем пользователя в окно входа: там AuthPage обменяет токен Auth0 на JWT FastAPI.
+        // Return the user to the sign-in dialog, where AuthPage exchanges the Auth0 token for a FastAPI JWT.
         const returnTo = appState?.returnTo ?? "/login";
         window.history.replaceState({}, document.title, returnTo);
 
-        // replaceState сам по себе не сообщает BrowserRouter о смене маршрута.
+        // replaceState alone does not notify BrowserRouter that the route has changed.
         window.dispatchEvent(new PopStateEvent("popstate"));
       }}
       authorizationParams={{
@@ -25,7 +25,7 @@ export function AppProviders({ children }: PropsWithChildren) {
         scope: "openid profile email",
       }}
     >
-      {/* Auth0 отвечает за Google-вход, контекст — за JWT нашего backend. */}
+      {/* Auth0 handles Google sign-in; the context stores our backend JWT. */}
       <AuthSessionProvider>{children}</AuthSessionProvider>
     </Auth0Provider>
   );

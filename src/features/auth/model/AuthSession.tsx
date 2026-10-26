@@ -14,7 +14,7 @@ const TOKEN_STORAGE_KEY = "collabboard_access_token";
 const AuthSessionContext = createContext<AuthSessionValue | null>(null);
 
 export function AuthSessionProvider({ children }: PropsWithChildren) {
-    // Восстанавливаем токен при загрузке приложения.
+    // Restore the token when the app loads.
     const [accessToken, setAccessTokenState] = useState<string | null>(() =>
         window.localStorage.getItem(TOKEN_STORAGE_KEY),
     );
@@ -22,7 +22,7 @@ export function AuthSessionProvider({ children }: PropsWithChildren) {
     const setAccessToken = (token: string | null) => {
         setAccessTokenState(token);
 
-        // null при выходе удалит сохранённый токен.
+        // Passing null on sign-out removes the stored token.
         if (token) {
             window.localStorage.setItem(TOKEN_STORAGE_KEY, token);
         } else {

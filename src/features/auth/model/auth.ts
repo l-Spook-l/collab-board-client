@@ -1,23 +1,23 @@
-// JWT, который backend возвращает после успешного входа.
+// JWT returned by the backend after successful sign-in.
 export interface BackendTokenResponse {
   access_token: string;
   token_type?: string;
 }
 
-// Данные для входа должны совпадать со схемой FastAPI.
+// Sign-in data must match the FastAPI schema.
 export interface PasswordLoginData {
   email: string;
   password: string;
 }
 
-// Backend требует имя длиной от 3 до 50 символов,
-// пароль — не короче 6 символов.
+// The backend requires a name between 3 and 50 characters
+// and a password of at least 6 characters.
 export interface PasswordRegistrationData extends PasswordLoginData {
   name: string;
 }
 
-// Такой объект backend возвращает после регистрации.
-// После регистрации фронтенд отдельно запросит JWT через /auth/login.
+// The backend returns this object after registration.
+// After registration, the frontend requests a JWT separately via /auth/login.
 export interface RegisteredUser {
   id: number;
   email: string;

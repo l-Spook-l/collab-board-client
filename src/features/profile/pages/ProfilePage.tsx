@@ -13,7 +13,7 @@ function getErrorMessage(error: unknown): string {
     return typeof detail === "string" ? detail : error.message;
   }
 
-  return error instanceof Error ? error.message : "Не удалось выполнить запрос.";
+  return error instanceof Error ? error.message : "The request failed.";
 }
 
 function ProfilePage() {
@@ -70,7 +70,7 @@ function ProfilePage() {
       const updatedProfile = await updateMyProfile(accessToken, profile.id, { name });
       setProfile(updatedProfile);
       setName(updatedProfile.name);
-      setFeedback("Имя обновлено.");
+      setFeedback("Name updated.");
     } catch (requestError: unknown) {
       setError(getErrorMessage(requestError));
     } finally {
@@ -89,7 +89,7 @@ function ProfilePage() {
     try {
       await updateMyProfile(accessToken, profile.id, { password });
       setPassword("");
-      setFeedback("Пароль обновлён.");
+      setFeedback("Password updated.");
     } catch (requestError: unknown) {
       setError(getErrorMessage(requestError));
     } finally {
@@ -105,20 +105,20 @@ function ProfilePage() {
     <main className="profile-page">
       <header className="profile-header">
         <Link to="/" className="profile-back-link">
-          ← На холст
+          ← Back to canvas
         </Link>
-        <h1>Профиль</h1>
+        <h1>Profile</h1>
         <span className="profile-header-spacer" aria-hidden="true" />
       </header>
 
       <section className="profile-card" aria-labelledby="profile-title">
         <div className="profile-card-heading">
-          <h2 id="profile-title">Настройки аккаунта</h2>
+          <h2 id="profile-title">Account settings</h2>
           {profile && <p>{profile.email}</p>}
         </div>
 
         {isLoading ? (
-          <p className="profile-message">Загружаем профиль…</p>
+          <p className="profile-message">Loading profile…</p>
         ) : (
           <>
             {error && <p className="profile-message profile-error" role="alert">{error}</p>}
@@ -128,7 +128,7 @@ function ProfilePage() {
               <>
                 <form className="profile-form" onSubmit={handleNameSubmit}>
                   <label className="profile-field">
-                    <span>Имя</span>
+                    <span>Name</span>
                     <input
                       type="text"
                       value={name}
@@ -139,13 +139,13 @@ function ProfilePage() {
                     />
                   </label>
                   <button type="submit" disabled={isSavingName || name === profile.name}>
-                    {isSavingName ? "Сохраняем…" : "Сохранить имя"}
+                    {isSavingName ? "Saving…" : "Save name"}
                   </button>
                 </form>
 
                 <form className="profile-form" onSubmit={handlePasswordSubmit}>
                   <label className="profile-field">
-                    <span>Новый пароль</span>
+                    <span>New password</span>
                     <input
                       type="password"
                       value={password}
@@ -159,7 +159,7 @@ function ProfilePage() {
                     type="submit"
                     disabled={isSavingPassword || password.length < 6}
                   >
-                    {isSavingPassword ? "Сохраняем…" : "Изменить пароль"}
+                    {isSavingPassword ? "Saving…" : "Change password"}
                   </button>
                 </form>
               </>

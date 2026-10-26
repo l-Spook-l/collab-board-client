@@ -12,7 +12,7 @@ export async function loginWithAuth0(
   return response.data;
 }
 
-// Обычный вход: FastAPI принимает email и пароль и возвращает JWT.
+// Password sign-in: FastAPI accepts the email and password and returns a JWT.
 export async function loginWithPassword(
   data: PasswordLoginData,
 ): Promise<BackendTokenResponse> {
@@ -20,7 +20,7 @@ export async function loginWithPassword(
   return response.data;
 }
 
-// Регистрация создаёт пользователя, но не выдаёт JWT.
+// Registration creates the user but does not issue a JWT.
 export async function registerWithPassword(
   data: PasswordRegistrationData,
 ): Promise<RegisteredUser> {

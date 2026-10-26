@@ -33,7 +33,7 @@ function AuthPage() {
       authorizationParams: {
         connection: "google-oauth2",
       },
-      // Auth0 возвращает пользователя в эту же модалку для обмена backend-токена.
+      // Auth0 returns the user to this same dialog to exchange the token for a backend JWT.
       appState: {
         returnTo: "/login",
       },
@@ -71,13 +71,13 @@ function AuthPage() {
   }, [getAccessTokenSilently, setAccessToken]);
 
   useEffect(() => {
-    // Уже сохранённая backend-сессия сразу возвращает пользователя на холст.
+    // An existing backend session takes the user straight back to the canvas.
     if (accessToken) {
       navigate("/", { replace: true });
       return;
     }
 
-    // После Google-входа автоматически получаем JWT нашего backend.
+    // After Google sign-in, automatically obtain a JWT from our backend.
     if (
       isLoading ||
       !isAuthenticated ||
@@ -97,7 +97,7 @@ function AuthPage() {
   ]);
 
   const handleGoogleLogin = () => {
-    // Если Auth0 уже вошёл, эта же кнопка позволяет повторить обмен с FastAPI.
+    // If the user is already signed in to Auth0, this button retries the exchange with FastAPI.
     if (isAuthenticated) {
       void handleConnectBackend();
       return;
@@ -107,15 +107,15 @@ function AuthPage() {
   };
 
   const googleButtonLabel = isLoading
-    ? "Проверка входа..."
+    ? "Checking sign-in..."
     : isConnecting
-      ? "Завершаем вход..."
+      ? "Finishing sign-in..."
       : isAuthenticated
-        ? "Повторить подключение"
-        : "Продолжить с Google";
+        ? "Retry connection"
+        : "Continue with Google";
 
-  // Не показываем форму, пока Auth0 загружается или обменивает токен на JWT FastAPI.
-  // Если обмен завершится ошибкой, форма снова появится с сообщением и кнопкой повтора.
+  // Keep the form hidden while Auth0 loads or exchanges the token for a FastAPI JWT.
+  // If the exchange fails, show the form again with an error message and a retry button.
   const isFinishingLogin =
     isLoading ||
     isConnecting ||
@@ -124,7 +124,7 @@ function AuthPage() {
 
   return (
     <>
-      {/* Холст остаётся фоном; отдельная страница выбора входа больше не показывается. */}
+      {/* The canvas remains in the background; the separate sign-in selection page is no longer shown. */}
       <BoardPage />
 
       {!isFinishingLogin && (
