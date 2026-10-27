@@ -9,6 +9,17 @@
   padding: 28px 20px;
 }
 
+.board-list-groups {
+  display: grid;
+  gap: 34px;
+}
+
+.board-list-group h2 {
+  margin: 0 0 14px;
+  color: #202638;
+  font-size: 20px;
+}
+
 .board-list-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -46,7 +57,8 @@
   color: #6b7280;
 }
 
-.board-delete-button {
+.board-delete-button,
+.board-leave-button {
   align-self: flex-start;
   padding: 6px 10px;
   border: 1px solid #fecaca;
@@ -57,22 +69,33 @@
   cursor: pointer;
 }
 
-.board-delete-button:hover:not(:disabled) {
+.board-delete-button:hover:not(:disabled),
+.board-leave-button:hover:not(:disabled) {
   background: #fef2f2;
 }
 
-.board-delete-button:disabled {
+.board-delete-button:disabled,
+.board-leave-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
 .board-list-empty {
-  max-width: 520px;
-  margin: 12vh auto;
-  text-align: center;
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  padding: 20px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 10px;
+  background: #fff;
 }
 
 .board-list-empty p {
+  margin: 0;
   color: #6b7280;
-  margin-bottom: 20px;
+}
+
+.board-list-empty-message {
+  margin: 0;
+  color: #6b7280;
 }

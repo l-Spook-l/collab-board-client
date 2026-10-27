@@ -14,6 +14,7 @@ interface BoardSocketCallbacks {
   onEvent: (event: BoardRealtimeEvent) => void;
   onSaved: (revision: number) => void;
   onDeleted: (board: { id: number; title: string }) => void;
+  onAccessRevoked: () => void;
 }
 
 export function useBoardSocket(
@@ -74,6 +75,9 @@ export function useBoardSocket(
     });
     socket.on("board:deleted", (board: { id: number; title: string }) => {
       callbacksRef.current.onDeleted(board);
+    });
+    socket.on("board:access_revoked", () => {
+      callbacksRef.current.onAccessRevoked();
     });
     socket.on("stroke:start", (data) =>
       callbacksRef.current.onEvent({ type: "stroke:start", data }),

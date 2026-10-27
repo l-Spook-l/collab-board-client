@@ -54,6 +54,13 @@ export async function deleteBoard(
   return response.data;
 }
 
+export async function leaveBoard(
+  accessToken: string,
+  boardId: number,
+): Promise<void> {
+  await http.delete(`/boards/${boardId}/members/me`, authConfig(accessToken));
+}
+
 export async function searchUserByEmail(
   accessToken: string,
   email: string,

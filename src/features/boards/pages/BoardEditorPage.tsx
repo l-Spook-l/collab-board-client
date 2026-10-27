@@ -90,6 +90,10 @@ function BoardEditorPage() {
     navigate("/boards", { replace: true });
   }, [navigate]);
 
+  const handleAccessRevoked = useCallback(() => {
+    navigate("/boards", { replace: true });
+  }, [navigate]);
+
   const socketBoardId = visibleBoard ? validBoardId : null;
   const { emitEvent, presence, revision, saveBoard, status } = useBoardSocket(
     accessToken,
@@ -99,6 +103,7 @@ function BoardEditorPage() {
       onEvent: handleSocketEvent,
       onSaved: handleSocketSaved,
       onDeleted: handleBoardDeleted,
+      onAccessRevoked: handleAccessRevoked,
     },
   );
 
