@@ -163,6 +163,11 @@ function BoardEditorPage() {
     } catch (reason) {
       if (axios.isAxiosError(reason) && reason.response?.status === 404) {
         setInviteMessage("User or board not found.");
+      } else if (
+        axios.isAxiosError(reason) &&
+        typeof reason.response?.data?.detail === "string"
+      ) {
+        setInviteMessage(reason.response.data.detail);
       } else {
         setInviteMessage("Could not add the user to the board.");
       }

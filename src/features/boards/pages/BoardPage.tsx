@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useAuthSession } from "../../auth/model/AuthSession";
@@ -28,8 +29,13 @@ function BoardPage() {
                 whiteboardRef.current.getDocument(),
             );
             navigate(`/boards/${board.id}`);
-        } catch {
-            setError("Could not create the board. Check your connection and sign in again.");
+        } catch (reason) {
+            const detail = axios.isAxiosError(reason) ? reason.response?.data?.detail : null;
+            setError(
+                typeof detail === "string"
+                    ? detail
+                    : "Could not create the board. Check your connection and sign in again.",
+            );
         } finally {
             setIsSaving(false);
         }
