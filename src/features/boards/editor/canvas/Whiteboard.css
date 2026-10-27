@@ -8,10 +8,51 @@
 .whiteboard-toolbar {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 20px;
     padding: 12px 20px;
     border-bottom: 1px solid #dbe1ea;
     background: #fff;
+}
+
+.whiteboard-tools {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-width: 100%;
+}
+
+.whiteboard-tool-button,
+.whiteboard-grid-button {
+    min-height: 34px;
+    padding: 7px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #fff;
+    color: #374151;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.whiteboard-tool-button:hover:not(:disabled),
+.whiteboard-grid-button:hover {
+    background: #f3f4f6;
+}
+
+.whiteboard-tool-button[aria-pressed="true"],
+.whiteboard-grid-button[aria-pressed="true"] {
+    border-color: #2563eb;
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+
+.whiteboard-tool-button:focus-visible,
+.whiteboard-grid-button:focus-visible,
+.whiteboard-clear-button:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
 }
 
 .whiteboard-control {
@@ -56,6 +97,13 @@
     background: #f3f4f6;
 }
 
+.whiteboard-tool-button:disabled,
+.whiteboard-clear-button:disabled,
+.whiteboard-control input:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
 .whiteboard-workspace {
     display: grid;
     flex: 1;
@@ -66,10 +114,17 @@
     background: #e9edf5;
 }
 
+.whiteboard-canvas-frame {
+    position: relative;
+    width: min(100%, 1280px);
+    aspect-ratio: 1600 / 950;
+}
+
 .whiteboard-canvas {
     display: block;
-    width: min(100%, 1280px);
-    height: auto;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
     border: 1px solid #d1d5db;
     background: #fff;
     box-shadow: 0 8px 24px rgb(31 41 55 / 10%);
@@ -79,11 +134,42 @@
     touch-action: none;
 }
 
+.whiteboard-canvas-eraser {
+    cursor: none;
+}
+
+.whiteboard-eraser-cursor {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    box-sizing: border-box;
+    border: 1px solid #111827;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 8%);
+    box-shadow: 0 0 0 1px #fff;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+.whiteboard-canvas-grid {
+    background-color: #fff;
+    background-image:
+        linear-gradient(to right, rgb(148 163 184 / 24%) 1px, transparent 1px),
+        linear-gradient(to bottom, rgb(148 163 184 / 24%) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
 .whiteboard-canvas-disabled {
     cursor: wait;
 }
 
-.whiteboard-clear-button:disabled {
-    opacity: 0.55;
-    cursor: not-allowed;
+@media (max-width: 760px) {
+    .whiteboard-toolbar {
+        gap: 12px;
+        padding: 10px 12px;
+    }
+
+    .whiteboard-clear-button {
+        margin-left: 0;
+    }
 }

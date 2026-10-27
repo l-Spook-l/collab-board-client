@@ -8,6 +8,7 @@ export type BoardRealtimeEvent =
         color: string;
         width: number;
         point: BoardPoint;
+        is_eraser?: boolean | null;
       };
     }
   | {

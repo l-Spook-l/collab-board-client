@@ -12,6 +12,7 @@ export interface BoardStroke {
   width: number;
   points: BoardPoint[];
   user_id?: number | null;
+  is_eraser?: boolean | null;
 }
 
 export interface BoardDocument {
