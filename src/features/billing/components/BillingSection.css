@@ -1,0 +1,166 @@
+.billing-card {
+  width: min(100% - 32px, 760px);
+  margin: 24px auto 40px;
+  padding: 28px;
+  border: 1px solid #e1e6ef;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 28px rgb(32 38 56 / 6%);
+}
+
+.billing-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.billing-heading h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+}
+
+.billing-heading p,
+.billing-message {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.billing-plan-badge {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.billing-plan-free {
+  background: #eef1f5;
+  color: #475467;
+}
+
+.billing-plan-pro {
+  background: #e9f8ef;
+  color: #137a3b;
+}
+
+.billing-message {
+  margin-top: 16px;
+}
+
+.billing-error {
+  color: #b42318;
+}
+
+.billing-success {
+  color: #15803d;
+}
+
+.billing-past-due {
+  color: #9a6700;
+}
+
+.billing-usage {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 22px 0 14px;
+  color: #475467;
+  font-size: 14px;
+}
+
+.billing-plans {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.billing-plan-card {
+  display: flex;
+  min-height: 240px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  border: 1px solid #dbe1ea;
+  border-radius: 10px;
+}
+
+.billing-plan-card.is-current {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgb(37 99 235 / 10%);
+}
+
+.billing-plan-card h3 {
+  margin: 0 0 10px;
+}
+
+.billing-price {
+  margin: 0;
+  color: #202638;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.billing-price span {
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.billing-plan-card ul {
+  display: grid;
+  gap: 9px;
+  margin: 18px 0;
+  padding-left: 20px;
+  color: #475467;
+  font-size: 14px;
+}
+
+.billing-plan-card button,
+.billing-portal-button {
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 7px;
+  background: #2563eb;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.billing-plan-card button {
+  margin-top: auto;
+}
+
+.billing-plan-card button:disabled,
+.billing-portal-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.billing-current-label {
+  margin-top: auto;
+  color: #475467;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.billing-portal-button {
+  margin-top: 16px;
+  background: #475467;
+}
+
+@media (max-width: 560px) {
+  .billing-card {
+    padding: 20px;
+  }
+
+  .billing-heading,
+  .billing-usage {
+    flex-direction: column;
+  }
+
+  .billing-plans {
+    grid-template-columns: 1fr;
+  }
+}

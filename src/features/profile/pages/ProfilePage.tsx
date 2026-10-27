@@ -5,6 +5,7 @@ import { Link, Navigate } from "react-router-dom";
 import { useAuthSession } from "../../auth/model/AuthSession";
 import { getMyProfile, updateMyProfile } from "../api/profile";
 import type { UserProfile } from "../model/profile";
+import BillingSection from "../../billing/components/BillingSection";
 import "./ProfilePage.css";
 
 function getErrorMessage(error: unknown): string {
@@ -167,6 +168,7 @@ function ProfilePage() {
           </>
         )}
       </section>
+      <BillingSection />
     </main>
   );
 }
